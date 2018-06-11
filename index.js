@@ -31,10 +31,10 @@ const main = async () => {
         // 此处改为你需要发消息的群名
         const room = await wechat.queryRoom('咪咕前端闲聊群')
         // 执行时间见jobs.js
-        const currentDate = formatDate(new Date().getTime(), 'yyyy-MM-dd');
-        const currentHour = formatDate(new Date().getTime(), 'hh');
-        const preHour = formatDate(new Date().getTime() - 1 * 60 * 60 * 1000, 'hh');
         job.scheduleJob(() => {
+            const currentDate = formatDate(new Date().getTime() - 1 * 60 * 60 * 1000, 'yyyy-MM-dd');
+            const currentHour = formatDate(new Date().getTime(), 'hh');
+            const preHour = formatDate(new Date().getTime() - 1 * 60 * 60 * 1000, 'hh');
             room.say(`时间：${currentDate}（${preHour}:00-${currentHour}:00）\n结论：H5页面正常`);
         })
     }
