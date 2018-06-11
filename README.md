@@ -11,9 +11,9 @@ npm install puppeteer --save --ignore-scripts
 
 5. 把下载的chrome压缩包进行解压，将`chrome-win32`（**Mac上为chrome-mac**）放入`win64-564778`（Mac上为**mac-564778**）文件夹
 
-6. 安装webchaty
+6. 安装webchaty等
 ```bash
-npm install webchaty --save
+npm install -d
 ```
 7. 运行程序
 > 修改index.js中的`wechat.queryRoom('巴啦啦测试群')`，更具需要修改群名
