@@ -32,8 +32,8 @@ const main = async () => {
         const room = await wechat.queryRoom('咪咕前端闲聊群')
         // 执行时间见jobs.js
         const currentDate = formatDate(new Date().getTime(), 'yyyy-MM-dd');
-        const currentHour = formatDate(new Date().getTime(), 'mm');
-        const preHour = formatDate(new Date().getTime() - 1 * 60 * 60 * 1000, 'mm');
+        const currentHour = formatDate(new Date().getTime(), 'hh');
+        const preHour = formatDate(new Date().getTime() - 1 * 60 * 60 * 1000, 'hh');
         job.scheduleJob(() => {
             room.say(`时间：${currentDate}（${preHour}:00-${currentHour}:00）\n结论：H5页面正常`);
         })
