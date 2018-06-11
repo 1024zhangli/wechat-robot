@@ -1,0 +1,26 @@
+{
+  "name": "woldcup-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "zhaolei",
+  "license": "MIT",
+  "dependencies": {
+    "chromedriver": "^2.40.0",
+    "node-schedule": "^1.3.0",
+    "qrcode-terminal": "^0.12.0",
+    "wechaty": "^0.14.10"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "*.json"
+    ],
+    "delay": "2500"
+  }
+}
