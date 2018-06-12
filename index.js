@@ -9,7 +9,7 @@ const main = async () => {
     if (user) {
         Logger.debug(`欢迎欢迎，${user.name()}登入成功！`)
         // 此处改为你需要发消息的群名
-        const room = await wechat.queryRoom('巴啦啦测试群')
+        const room = await wechat.queryRoom('咪咕前端闲聊群')
         if(!room) {
             Logger.warn('没有找到房间号，请确认房间号存在')
             return
