@@ -44,7 +44,7 @@ module.exports = {
         let currentHour = this.formatDate(now, 'hh')
         const preHour = this.formatDate(now - 1 * 60 * 60 * 1000, 'hh')
         if (currentHour === '00' && preHour === '23') {
-            currentHour = '24:00'
+            currentHour = '24'
         }
 
         return {
