@@ -15,7 +15,11 @@ npm install puppeteer --save --ignore-scripts
 ```bash
 npm install -d
 ```
-7. 运行程序
+
+7. 将`binary`文件夹中的`cmdmp3.exe`复制到`c:\windows`目录或者增加到PATH环境变量
+
+
+8. 运行程序
 > 修改index.js中的`wechat.queryRoom('巴啦啦测试群')`，更具需要修改群名
 
 ```bash

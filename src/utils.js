@@ -1,3 +1,4 @@
+
 module.exports = {
     isDate(obj) {
         return Object.prototype.toString.call(obj) === '[object Date]'
@@ -50,5 +51,11 @@ module.exports = {
             currentHour,
             preHour
         }
+    },
+
+    playMusic() {
+        const MusicPlayer = require('./music')
+        const player = new MusicPlayer()
+        return player.play()
     }
 }
