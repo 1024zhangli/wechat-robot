@@ -3,6 +3,7 @@ module.exports = {
     isDate(obj) {
         return Object.prototype.toString.call(obj) === '[object Date]'
     },
+
     formatDate(date, fmt = 'yyyy-MM-dd') {
         if (typeof date == 'number') {
             date = new Date(date)
@@ -51,6 +52,14 @@ module.exports = {
             currentHour,
             preHour
         }
+    },
+
+    sleep(time) {
+        return new Promise( next=> {
+            setTimeout(()=> {
+                next();
+            }, time);
+        })
     },
 
     playMusic() {

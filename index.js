@@ -3,6 +3,7 @@ const job = require('./src/jobs')
 const utils = require('./src/utils')
 const Logger = require('./src/logger')
 const fork = require('child_process').fork;
+const robot = require('./src/ui-robot')
 
 const main = async () => {
     const user = await wechat.loginToWeChat()
@@ -14,18 +15,27 @@ const main = async () => {
             Logger.warn('没有找到房间号，请确认房间号存在')
             return
         }
+        
         // 执行时间见jobs.js
         job.scheduleJob(() => {
             const {currentDate, preHour, currentHour} = utils.getDateAndHourRanges()
-            const child = fork('./src/ui-robot.js')
-            child.on('message', message  => {
-                Logger.debug(`收到来自孩子的消息：${message}`)
+            // const child = fork('./src/ui-robot.js')
+            // child.on('message', message  => {
+            //     Logger.debug(`收到来自孩子的消息：${message}`)
+            //     room.say(
+            //         `时间：${currentDate}（${preHour}:00-${currentHour}:00）\n结论：H5页面正常`
+            //     )
+            //     child.kill(0)
+            // })
+            // child.send({action: 'CHECK_PK'})
+
+            robot(() => {
                 room.say(
                     `时间：${currentDate}（${preHour}:00-${currentHour}:00）\n结论：H5页面正常`
                 )
-                child.kill(0)
-            })
-            child.send({action: 'CHECK_PK'})
+            }, err => {
+                utils.playMusic()
+            });
 
         })
         // 如果报错就播放音乐
