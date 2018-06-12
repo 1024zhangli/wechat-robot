@@ -1,7 +1,12 @@
 const path = require('path')
+const fs = require('fs')
+var mkdirp = require('mkdirp')
 const { createLogger, format, transports } = require('winston')
 const { combine, timestamp, label, printf } = format
 const logFolder = path.join(__dirname, '../logs')
+if(!fs.existsSync(logFolder)){  
+    mkdirp.sync(logFolder) 
+}
 
 const logFormat = printf(info => {
     return `${info.timestamp} ${info.level}: ${info.message}`

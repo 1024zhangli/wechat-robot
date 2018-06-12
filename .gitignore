@@ -13,3 +13,4 @@ yarn-error.log*
 *.sln
 my-bot.wechaty.json
 logs/*.log
+screenshot.png

@@ -16,7 +16,7 @@ npm install puppeteer --save --ignore-scripts
 npm install -d
 ```
 
-7. 将`binary`文件夹中的`cmdmp3.exe`复制到`c:\windows`目录或者增加到PATH环境变量
+7. 将`binary`文件夹中的`cmdmp3.exe`复制到`c:\windows`目录或者增加到PATH环境变量。Mac用户需要运行`brew install sox`
 
 
 8. 运行程序
