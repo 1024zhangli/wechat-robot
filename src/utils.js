@@ -1,6 +1,6 @@
 module.exports = {
     isDate(obj) {
-        return Object.prototype.toString.call(obj) === "[object Date]"
+        return Object.prototype.toString.call(obj) === '[object Date]'
     },
     formatDate(date, fmt = 'yyyy-MM-dd') {
         if (typeof date == 'number') {
@@ -35,7 +35,7 @@ module.exports = {
     },
 
     getDateAndHourRanges(now = Date.now()) {
-        if(this.isDate(now)) {
+        if (this.isDate(now)) {
             now = +now
         }
         const currentDate = this.formatDate(now - 1 * 60 * 60 * 1000)
