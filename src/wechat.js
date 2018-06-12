@@ -1,4 +1,5 @@
 const { Wechaty, Room } = require('wechaty')
+const Logger = require('./Logger')
 const PromiseResolve = require('./promiseResolve')
 const bot = Wechaty.instance({ profile: 'my-bot' })
 const promiseResolve = new PromiseResolve()
@@ -23,13 +24,11 @@ module.exports = {
             const sender = message.from()
             if (!sender || !room) return
             const content = message.content()
-            console.log(`${sender.name()}<${room.topic()}>:`, content)
-            if(/自动回复一下下/.test(content)) {
-                const myRoom = await Room.find({topic: room.topic()})
-                myRoom.say('我自动回复你拉', sender)
+            // 只记录自己发送的消息
+            if(sender === this.self()) {
+                Logger.debug(`${sender.name()}<${room.topic()}>：${content}`)
             }
         })
-
         bot.start()
 
         return promiseResolve.promise

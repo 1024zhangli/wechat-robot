@@ -12,3 +12,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 my-bot.wechaty.json
+logs/*.log
