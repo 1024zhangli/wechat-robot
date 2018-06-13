@@ -17,6 +17,12 @@ const robotLaunch = (success, error) => {
     }).then(async browser => {
         const page = await browser.newPage();
         const {formatDate, sleep} = utils;
+
+        page.on('pageerror', err => {
+            Logger.error(err)
+            error();
+        });
+
         await page.goto('https://pk.migu.cn/pk/page/miguvideo/');
         await page.setViewport({
             width: 375,
@@ -48,21 +54,44 @@ const robotLaunch = (success, error) => {
             await page.waitForSelector('.preview-image').then(async () => {
                 const imgWrap = await page.$('.preview-image img')
                 await imgWrap.click()
+                await sleep(1000)
+                await imgWrap.click()
+                await sleep(1000)
+                const rankBtn = await page.$('.ranking-icon')
+                await rankBtn.click()
 
-                await page.screenshot({ path: 'screenshot.png' })
-                console.log(formatDate(new Date().getTime()) + ' 验证通过')
-                await browser.close()
-                success()
+                const imgData = await page.evaluate(() => {
+                    return document.querySelector('.preview-image img').src;
+                })
+                const rankListLength = await page.evaluate(() => {
+                    return document.querySelectorAll('.ranking-body ul li').length
+                })
+
+                if(imgData !== '' && rankListLength > 0) {
+                    Logger.info('验证通过')
+                    await page.screenshot({ path: 'screenshot.png' })
+                    await browser.close()
+                    success()
+                } else {
+                    Logger.error('程序出错')
+                    if(imgData === '') {
+                        Logger.error('生成图片数据异常')
+                    }
+                    if(rankListLength === 0) {
+                        Logger.error('榜单数据异常')
+                    }
+                    error()
+                }
             }, err => {
-                err && console.log('程序出错')
+                err && Logger.error('程序出错')
                 error()
             });
         }, err => {
-            err && console.log('程序出错')
+            err && Logger.error('程序出错')
             error()
         });
     }, err => {
-        err && console.log('程序出错')
+        err && Logger.error('程序出错')
         error()
     })
 }
